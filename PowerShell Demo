@@ -1,0 +1,19 @@
+# PowerShell example
+# Requires PowerShell v3
+
+# Determine variables
+$Application = "https://fonoapi.freshpixl.com/v1/getdevice"
+$Token = "a04ee2a9fed8fcd9219200cbd07bb2794831750c57cb9972"
+ 
+# Hash table with request
+$Request = @{
+    brand = "Samsung"
+    device = "I9505"
+    token = "a04ee2a9fed8fcd9219200cbd07bb2794831750c57cb9972"
+}
+# Process request through REST API in JSON format
+$Json = $Request | ConvertTo-Json
+$Response = Invoke-RestMethod $Application -Method Post -Body $Json -ContentType 'application/json'
+
+# Write device details to screen
+Write-Output $response
